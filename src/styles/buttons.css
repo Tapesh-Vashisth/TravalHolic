@@ -1,0 +1,11 @@
+.btn {
+
+}
+
+/* button1 */
+.button1 {
+    color: white;
+    border: 1px solid white;
+    padding: 5px 20px;
+    border-radius: 20px;
+}

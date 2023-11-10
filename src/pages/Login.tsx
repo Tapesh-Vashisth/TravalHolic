@@ -9,6 +9,6 @@ function Login() {
         Login
     </div>
   )
-}
+}   
 
 export default Login
