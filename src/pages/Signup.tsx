@@ -4,6 +4,8 @@ import React from 'react'
 // last name 
 // emailid 
 // mobile number 
+// nationality
+// country of residence  
 // password 
 function Signup() {
   return (
