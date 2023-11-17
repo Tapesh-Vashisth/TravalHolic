@@ -1,6 +1,9 @@
 import "../styles/signup.css";
 import Button1 from '../components/buttons/Button1';
 import {useNavigate} from "react-router-dom";
+import SignupImage from "../assets/vectors/signup.svg"
+import Logo from "../assets/logo.png";
+import Input1 from "../components/inputs/input1";
 
 
 function Signup() {
@@ -15,16 +18,29 @@ function Signup() {
             <div className='signup-main-container'>
                 <div className='signup-left'>
                     <div className='signup-logo-container'>
-                        <p>logo</p>
+                        <img src={Logo} className="signup-logo" />
                     </div>
-                    <p>left</p>
+                    <div>
+                        <div>
+                            <Input1 />
+                        </div>
+                        <div>
+                            <Input1 />
+                        </div>
+                        <div>
+                            <Input1 />
+                        </div>
+                        <div>
+                            <Input1 />
+                        </div>
+                    </div>
                 </div>
                 <div className='signup-right'>
                     <div className='signup-right-login'>
                         <Button1 text="Login" onPress={handleLoginClick} />
                     </div>
-                    <div>
-                        <p>image</p>
+                    <div className="signup-right-image-container">
+                        <img className="signup-right-image" src={SignupImage} />
                     </div>
                 </div> 
             </div>
@@ -38,7 +54,5 @@ export default Signup;
 // first name 
 // last name 
 // emailid 
-// mobile number 
-// nationality
-// country of residence  
+// mobile number   
 // password 
