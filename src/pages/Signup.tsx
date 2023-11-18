@@ -1,6 +1,6 @@
 import "../styles/signup.css";
 import Button1 from '../components/buttons/Button1';
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import SignupImage from "../assets/vectors/signup.svg"
 import Logo from "../assets/logo.png";
 import Input1 from "../components/inputs/Input1";
@@ -43,6 +43,10 @@ function Signup() {
                             <div className="signup-button-container">
                                 <Button2 text="Register" backgroundColor="#339ae5" fontColor="white" />
                             </div>
+
+                            <div className="signup-login-link">
+                              <p>Already have an account? <NavLink to="/login" style={{fontWeight: 500, color: "#339ae5"}}>Login</NavLink></p>                              
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -60,10 +64,3 @@ function Signup() {
 }
 
 export default Signup;
-
-
-// first name 
-// last name 
-// emailid 
-// mobile number   
-// password 

@@ -1,4 +1,4 @@
-.signup-container {
+.login-container {
     min-height: 100vh;
     background-color: #cce0f8;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.signup-main-container {
+.login-main-container {
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -17,31 +17,45 @@
     min-height: 80vh;
 }
 
-.signup-left {
+.login-left {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 
-.signup-logo-container {
+.login-logo-container {
     padding: 10px 0px 0px 15px;
 }
 
-.signup-logo {
+.login-logo {
     height: 60px;
 }
 
-.signup-input-container:not(:first-child) {
+.login-welcome-container {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+    column-gap: 8px;
+    justify-content: flex-start;
+}
+
+.login-welcome-container h2 {
+    font-size: 20px;
+}
+
+.login-input-container:not(:first-child) {
     margin-top: 20px;
 }
 
-.signup-button-container {
+.login-button-container {
     margin-top: 30px;
     width: 100%;
 }
 
-.signup-field-container {
+.login-field-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -49,13 +63,13 @@
     align-items: center;
 }
 
-.signup-field-main-container {
+.login-field-main-container {
     width: 70%;
 }
 
-.signup-right::before {
+.login-right::before {
     content: "";
-    background-color: #2494ea;
+    background: url("../assets/login.jpg");
     top: 0;
     left: 0;
     position: absolute;
@@ -63,25 +77,27 @@
     height: 100%;
     z-index: -1;
     clip-path: circle(farthest-side at 100% 25%);
+    background-position: 10px center;
+    background-size: cover;
 }
 
-.signup-right {
+.login-right {
     position: relative;
     width: 50%;
     z-index: 1;
-    overflow: visible;
     display: flex;
+    overflow: visible;
     flex-direction: column;
 }
 
-.signup-right-login {
+.login-right-login {
     position: absolute;
     align-self: flex-end;
     margin: 10px 15px;
     z-index: 5;
 }
 
-.signup-right-image-container {
+.login-right-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,15 +105,17 @@
     height: 100%;
 }
 
-.signup-right-image {
+/* .login-right-image {
     position: absolute;
     width: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-40%, -50%);
-}
+    border-bottom-left-radius: 5px;
+    filter: blur(5);
+} */
 
-.signup-login-link {
+.login-signup-link {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -105,41 +123,45 @@
     display: none;
 }
 
-.signup-login-link p {
+.login-signup-link p {
     color: #5a5a5a;
 }
 
 @media screen and (max-width: 995px) {
-    .signup-right {
+    .login-right {
         display: none;
     }
 
-    .signup-left {
+    .login-left {
         width: 100%;
     }
 
-    .signup-logo-container {
+    .login-logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 30px 0px 0px 0px;
+        padding: 40px 0px 0px 0px;
     }   
 
-    .signup-logo {
+    .login-logo {
         height: 100px;
     }
 
-    .signup-field-main-container {
+    .login-field-main-container {
         width: 80%;
     }
 
-    .signup-login-link {
+    .login-welcome-container {
+        width: 80%;
+    }
+
+    .login-signup-link {
         display: flex;
     }
 }
 
 @media screen and (max-width: 380px) { 
-    .signup-main-container {
+    .login-main-container {
         width: 100%;
     }
 }
