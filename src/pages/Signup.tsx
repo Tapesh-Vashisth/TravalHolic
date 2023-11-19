@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import "../styles/signup.css";
 import Button1 from "../components/buttons/Button1";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -11,13 +11,19 @@ import User from "../assets/icons/User";
 import Phone from "../assets/icons/Phone";
 import Password from "../assets/icons/Password";
 import { emailRegex, mobileRegex } from "../helper/regexConstants";
+import { disabledBtnClr, enabledBtnClr } from "../helper/constants";
+import { OutgoingNewUserData } from "../types/AuthTypes";
+import { useAppDispatch } from "../store";
+import reducerServices from "../reducers/reducerServices";
 
 function Signup() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [fullName, setFullName] = useState<string>("");
   const [emailId, setEmailId] = useState<string>("");
   const [mobileNumber, setMobileNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isSubmitEnabled, setIsSubmitEnabled] = useState<boolean>(false);
 
   const handleLoginClick = () => {
     navigate("/login");
@@ -37,6 +43,33 @@ function Signup() {
     return !(password.trim().length >= 8);
   }, [password]);
 
+  useEffect(() => {
+    if (fullNameError || emailIdError || mobileError || passwordError) {
+      setIsSubmitEnabled(false);
+    } else {
+      setIsSubmitEnabled(true);
+    }
+  }, [fullNameError, emailIdError, mobileError, passwordError]);
+
+  const registerClickHandler = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.preventDefault();
+    const finalData: OutgoingNewUserData = {
+      fullName,
+      emailId,
+      mobileNumber,
+      password,
+    };
+    const result = await dispatch(
+      reducerServices.auth.postSignupThunk(finalData)
+    );
+    if (reducerServices.auth.postSignupThunk.fulfilled.match(result)) {
+      console.log("Sign Up Success");
+      handleLoginClick();
+    }
+  };
+
   return (
     <div className="signup-container">
       <div className="signup-main-container">
@@ -44,7 +77,7 @@ function Signup() {
           <div className="signup-logo-container">
             <img src={Logo} className="signup-logo" />
           </div>
-          <form className="signup-field-container">
+          <div className="signup-field-container">
             <div className="signup-field-main-container">
               <div className="signup-input-container">
                 <OInput
@@ -90,8 +123,12 @@ function Signup() {
               <div className="signup-button-container">
                 <Button2
                   text="Register"
-                  backgroundColor="#339ae5"
+                  backgroundColor={`${
+                    !isSubmitEnabled ? disabledBtnClr : enabledBtnClr
+                  }`}
                   fontColor="white"
+                  disabled={!isSubmitEnabled}
+                  onClick={registerClickHandler}
                 />
               </div>
 
@@ -107,7 +144,7 @@ function Signup() {
                 </p>
               </div>
             </div>
-          </form>
+          </div>
         </div>
         <div className="signup-right">
           <div className="signup-right-login">
